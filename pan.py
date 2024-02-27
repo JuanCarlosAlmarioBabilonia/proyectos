@@ -1,35 +1,69 @@
-pan=tuple(("PAN BLANCO", "PAN INTEGRAL", "PAN DE CENTENO", "BAGUETTES", "PANECILLOS", "PAN DE AJO", "PAN DE OLIVA", "PAN DE MAIZ", "PAN ARABE", "PAN ESPELTA"))
-prec_pan=tuple((2500, 2800, 3200, 3500, 4500, 2300, 3500, 4300, 4000, 2500))
-bolleria=tuple(("DONAS", "CROISSANTS", "NAPOLITANAS", "CARACOLA", "CRESTA", "TARTEL", "MARAÑUELA", "MUJI", "TRENZA", "CONSAIMADA"))
-prec_boll=tuple((3500, 2000, 3400, 2800, 4500, 3600, 2700, 3000, 3200, 2100))
-tartas=tuple(("TARTA MOUSSE DE CHOCOLATE", "TARTA DE FRESA", "CHEESECAKE DE NUTELLA","TORTA HOJALDRE CON FRESA", "BANANA CREAM PIE", "CHEESECAKE DE JENGIBRE", "TARTA DE TRES CHOCOLATES", "TARTA FINA DE MANZANA", "TARTA ARABE", "TARTA DE PERAS"))
-prec_tarta=tuple((6500, 8000, 7500, 8400, 9000, 14000, 7500, 8700, 12000, 6300))
+inicio=dict({
+    "PANES":{
+        "Producto":list([
+           {"Nombre": "PAN BLANCO", "$":3200}, 
+           {"Nombre": "PAN INTEGRAL", "$":2800}, 
+           {"Nombre": "PAN DE CENTENO", "$":3500}, 
+           {"Nombre": "BAGUETTES", "$":2400}, 
+           {"Nombre": "PAN PANECILLOS", "$":1000}, 
+           {"Nombre": "PAN DE AJO", "$":4000}, 
+           {"Nombre": "PAN DE OLIVA", "$":4500},
+           {"Nombre": "PAN DE MAIZ", "$":5500}, 
+           {"Nombre": "PAN ARABE", "$":5000}, 
+           {"Nombre": "PAN ESPELTA", "$":5700}, 
+        ]),
+        "Promociones":list([
+           {"Codigo": 4, "Informacion": "Compre 4", "$":8000}, 
+           {"Codigo": 8, "Informacion": "Compre 3", "$":14000},
+        ]),
+    },
+    "BOLLERIA":{
+        "Producto":list([
+           {"Nombre": "DONAS", "$":2500},
+           {"Nombre": "CROAISSANTS", "$":2800},
+           {"Nombre": "NAPOLITANAS", "$":3300},
+           {"Nombre": "CARACOLA", "$":4500},
+           {"Nombre": "CRESTA", "$":4000},
+           {"Nombre": "TARTEL", "$":5000},
+           {"Nombre": "MARAÑUELA", "$":4800},
+           {"Nombre": "MUJI", "$":3700},
+           {"Nombre": "TRENZA", "$":3100},
+           {"Nombre": "CONSAIMADA", "$":4200},
+        ]),
+        "Promociones":list([
+           {"Codigo": 1, "Informacion": "Compre 3", "$":6500},
+           {"Codigo": 4, "Informacion": "Compre 2", "$":8000}, 
+        ]),
+    },
+    "TARTAS":{
+        "Producto":list([
+           {"Nombre": "TARTA MOUSSE DE CHOCOLATE", "$":14000},
+           {"Nombre": "TARTA DE FRESA", "$":12000},
+           {"Nombre": "CHEESECAKE DE NUTELLA", "$":9000},
+           {"Nombre": "TORTA DE HOJALDRE CON FRESA", "$":7500},
+           {"Nombre": "BANANA CREAM PIE", "$":8300},
+           {"Nombre": "CHEESECAKE DE JENGIBRE", "$":9000},
+           {"Nombre": "TARTA DE TRES CHOCOLATES", "$":13000},
+           {"Nombre": "TARTA FINA DE MANZANA", "$":15000},
+           {"Nombre": "TARTA ARABE", "$":10000},
+           {"Nombre": "TARTA DE PERAS", "$":12000},
+          ]),
+          "Promociones":list([
+           {"Codigo": 7, "Informacion": "Compre 2", "$":20000},
+           {"Codigo": 9, "Informacion": "Compre 2", "$":15000}, 
+        ]),
+    },
+})
 
-
-op=int(input("¿A que categoria te interesa entrar? Ingrese (1) para PAN, ingrese (2) para BOLLERIA o ingrese (3) para TARTAS: "))
-if op==1:
-    print ("PAN")
-for i, val in enumerate(pan):
-    print(f"{i}. {val} ${prec_pan[i]}")
-de =int(input("¿Te gustaria comprar algun producto de esta lista?(Digite (1) para SI, digite (2) para NO "))
-if de==1:
-    print ("¿Ingresa el numero del producto que deseas adquirir?")
-    xd=int(input())
-elif de==2:
-    print ("Ok")
-opc=int(input("¿A que categoria te interesa entrar? Ingrese (1) para PAN, ingrese (2) para BOLLERIA o ingrese (3) para TARTAS"))  
-for i, val in enumerate(bolleria):
-    print(f"{i}. {val} ${prec_boll[i]}")
-dec=int(input("¿Te gustaria comprar algun producto de esta lista?(Digite (1) para SI, digite (2) para NO "))
-if dec==1:
-    print ("¿Cual te gustaria comprar?")
-elif dec==2:
-    print ("Ok")
-opz=int(input("¿A que categoria te interesa entrar? Ingrese (1) para PAN, ingrese (2) para BOLLERIA o ingrese (3) para TARTAS"))
-for i, val in enumerate(tartas):
-    print(f"{i}. {val} ${prec_tarta[i]}")
-deb=int(input("¿Te gustaria comprar algun producto de esta lista?(Digite (1) para SI, digite (2) para NO "))
-if deb==1:
-    print ("¿Cual te gustaria comprar?")
-elif deb==2:
-    print ("Ok")
+print ("Seleccione la categoria en la que desea comprar: ")
+listac=list(inicio.keys())
+for i, val in enumerate(inicio.keys()):
+    print(f"{i}. {val}")
+opcion=int(input())
+datosc=inicio.get(listac[opcion])
+productos=datosc["Producto"]
+promociones=datosc["Promociones"]
+print (f"Usted selecciono ha seleccionado la categoria {listac[opcion]}, ingrese el numero del producto que desea adquirir")
+for i, val in enumerate(productos):
+    print(f"{i}. {val}")
+xd=int(input())
