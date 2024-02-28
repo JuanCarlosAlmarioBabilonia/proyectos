@@ -61,9 +61,20 @@ for i, val in enumerate(inicio.keys()):
     print(f"{i}. {val}")
 opcion=int(input())
 datosc=inicio.get(listac[opcion])
-productos=datosc["Producto"]
-promociones=datosc["Promociones"]
-print (f"Usted selecciono ha seleccionado la categoria {listac[opcion]}, ingrese el numero del producto que desea adquirir")
+productos=datosc.get("Producto")
+print (f"Seleccione el producto de la categoria {listac[opcion]} en la que desea comprar: ")
 for i, val in enumerate(productos):
     print(f"{i}. {val}")
-xd=int(input())
+op_pr=int(input())
+datosc=inicio.get(listac[opcion])
+promociones=datosc["Promociones"]
+promo=list()
+for val in promociones:
+    if (val.get("Codigo") == opcion):
+        promo.append(val)
+        
+if (len(promociones)== 0):
+    print (f"No hay promociones disponibles para {datosc['Producto'][op_pr]}")
+else:
+    print(f"Promociones del producto{datosc['Producto'][op_pr]}")
+    print(promociones)
