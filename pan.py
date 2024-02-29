@@ -54,7 +54,9 @@ inicio=dict({
         ]),
     },
 })
-
+#estado de las categorias
+print ("     ¡Bienvenido a Panaderia del Oriente!")
+print()
 print ("Seleccione la categoria en la que desea comprar: ")
 listac=list(inicio.keys())
 for i, val in enumerate(inicio.keys()):
@@ -62,15 +64,17 @@ for i, val in enumerate(inicio.keys()):
 opcion=int(input())
 datosc=inicio.get(listac[opcion])
 productos=datosc.get("Producto")
+#seleccion del producto
 print (f"Seleccione el producto de la categoria {listac[opcion]} en la que desea comprar: ")
 for i, val in enumerate(productos):
     name=val["Nombre"]
-    value=val["cuesta"]
-    print(f"{i} {name} con precio de ${value}")
+    vali=val["cuesta"]
+    print(f"{i}. {name} con precio de ${vali}")
 op_pr=int(input())
 mostrarn = productos[op_pr].get("Nombre")
-datosc=inicio.get(listac[opcion])
+mostrarp= productos[op_pr].get("cuesta")
 promociones=datosc["Promociones"]
+#seleccionar unidades del producto
 print ("¿Cuantas unidades del producto deseas comprar?")
 cant=int(input())
 promo=list()
@@ -79,24 +83,29 @@ for val in promociones:
         promo.append(val)
 desc=val["descuento"]
 vale=val["valor"]
-code=val["Codigo"]
 ds=int(vale*100)
-mul=value*cant
+mul=mostrarp*cant
 prec_a=mul * vale
 prec_b=mul - prec_a
+#estado de las promociones
 if (len(promo)== 0):
     print (f"No hay promociones disponibles para {mostrarn}")
     print ("VALOR A PAGAR : $",mul)
 else:
     print(f"El producto {mostrarn} tiene {desc} del",ds,"% de descuento")
-    print("Valor regular: $",mul,)
-    print("VALOR A PAGAR CON DESCUENTO: $",int(prec_b))
-    mul=int(prec_b)
-
+    print()
+    print ("¿Desea adquirir el descuento? Ingrese (1) para SI o ingrese (2) para NO")
+    decdes=int(input())
+    if decdes==1:
+      print("Valor regular: $",mul)
+      print("VALOR A PAGAR CON DESCUENTO: $",int(prec_b))
+      mul=int(prec_b)
+    else:
+      print("VALOR A PAGAR: $",mul)
+#estado del dinero a pagar
 dinero=int(input ("Ingrese la cantidad de dinero que tiene para pagar $"))
 vueltosn=dinero-mul
-vueltosd=dinero-int(prec_b)
 if dinero>=mul:
-     print("Recibe de vueltos $",vueltosn)
+     print("Recibe de vueltos $",vueltosn,"- ¡Gracias por su compra!")
 else:
     print(f"Su dinero no alcanza, le faltan $ {-vueltosn}")
